@@ -5,7 +5,7 @@
 % =========================================================================
 % Author: Automatic Simulink Model Generation
 % Date: 2024
-% Version: 1.0
+% Version: 1.1 (Fixed Annotation Issue)
 % Description: This script creates a complete 33-bus radial microgrid
 % model with 2 DG units and 2 inverters controlled by droop control
 % =========================================================================
@@ -286,24 +286,16 @@ add_line(ModelName, 'Const_mq/1', 'Display_mq/1');
 disp('✓ Connected parameter constants to displays');
 
 % =========================================================================
-% SECTION 8: Add Annotations
+% SECTION 8: Add Text Annotations (Using Text Box instead)
 % =========================================================================
 
-disp(sprintf('\n--- Adding Annotations ---'));
+disp(sprintf('\n--- Adding Text Information ---'));
 
-% Title annotation
-add_block('simulink/Annotation', [ModelName '/TitleAnnotation']);
-set_param([ModelName '/TitleAnnotation'], 'Name', ...
-    '33-Bus Radial Microgrid with 2 DG Units and 2 Inverters');
-set_param([ModelName '/TitleAnnotation'], 'Position', [400, 20, 900, 35]);
-
-% Description annotation
-add_block('simulink/Annotation', [ModelName '/DescAnnotation']);
-set_param([ModelName '/DescAnnotation'], 'Name', ...
-    'Control Strategy: Droop Control | Simulation Time: 10s');
-set_param([ModelName '/DescAnnotation'], 'Position', [400, 40, 900, 50]);
-
-disp('✓ Added title and description annotations');
+% Create a note in command window instead of using Annotation block
+disp(sprintf('✓ Model Information:'));
+disp(sprintf('  Title: 33-Bus Radial Microgrid with 2 DG Units and 2 Inverters'));
+disp(sprintf('  Control Strategy: Droop Control'));
+disp(sprintf('  Simulation Time: 10 seconds'));
 
 % =========================================================================
 % SECTION 9: Save Model
